@@ -18,7 +18,7 @@ public class ProductService {
         this.respository = respository;
     }
 
-    @Transactional(readOnly = true)
+    @Transactional
     public ProductSummary createProduct(ProductCreate create) {
         try {
             Product product = create.toEntity();
