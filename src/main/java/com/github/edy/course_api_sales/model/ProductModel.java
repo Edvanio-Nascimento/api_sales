@@ -34,7 +34,7 @@ public class ProductModel implements Serializable {
     @Column(nullable = false, columnDefinition = "text")
     private String description;
 
-    @Column(nullable = false, precision = 10, scale = 2)
+    @Column(nullable = false, precision = 19, scale = 2)
     private BigDecimal price;
 
     private Integer stock = 0;
