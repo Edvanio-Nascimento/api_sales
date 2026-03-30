@@ -5,6 +5,8 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.hibernate.annotations.SQLDelete;
+import org.hibernate.annotations.SQLRestriction;
 
 import java.io.Serial;
 import java.io.Serializable;
@@ -15,6 +17,8 @@ import java.util.UUID;
 @Getter @Setter
 @NoArgsConstructor @AllArgsConstructor
 @Entity @Table(name = "tb_products")
+@SQLDelete(sql = "UPDATE tb_products SET active = false WHERE id = ?")
+@SQLRestriction("active = true")
 public class ProductModel implements Serializable {
 
     @Serial
@@ -38,6 +42,8 @@ public class ProductModel implements Serializable {
     private BigDecimal price;
 
     private Integer stock = 0;
+
+    private boolean active = Boolean.TRUE;
 
     @Column(name = "created_at")
     private LocalDateTime createdAt;

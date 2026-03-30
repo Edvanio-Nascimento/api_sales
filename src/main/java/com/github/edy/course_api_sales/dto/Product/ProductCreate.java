@@ -29,7 +29,7 @@ public record ProductCreate(
     public ProductModel toEntity() {
         ProductModel model = new ProductModel();
 
-        model.setSku(sku);
+        model.setSku(sku.toUpperCase());
         model.setName(name);
         model.setDescription(description);
         model.setPrice(price);

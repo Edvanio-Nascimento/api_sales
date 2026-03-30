@@ -2,13 +2,18 @@ package com.github.edy.course_api_sales.repository;
 
 import com.github.edy.course_api_sales.model.ProductModel;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
 
+import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 
 public interface ProductRepository extends JpaRepository<ProductModel, UUID> {
 
-    Optional<ProductModel> findById(UUID id);
+    Optional<ProductModel> findBySku(String sku);
 
-    boolean existsById(UUID id);
+    boolean existsBySku(String sku);
+
+    @Query(value = "SELECT * FROM tb_products WHERE active = false", nativeQuery = true)
+    List<ProductModel> findAllInactive();
 }
